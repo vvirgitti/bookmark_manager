@@ -17,8 +17,6 @@ class BookmarkManager < Sinatra::Base
   get '/' do
     @links = Link.all
     @links.each do |link|
-      puts "%%%%%%%"
-    puts link.inspect
     end
     erb :index
   end
