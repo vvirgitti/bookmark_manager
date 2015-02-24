@@ -4,4 +4,6 @@ gem 'capybara'
 gem 'shotgun'
 gem 'rspec'
 gem 'cucumber-sinatra'
-end
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
+
