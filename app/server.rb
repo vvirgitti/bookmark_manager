@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'data_mapper'
 
-class Bookmark < Sinatra::Base
+class BookmarkManager < Sinatra::Base
 
   env = ENV['RACK_ENV'] || 'development'
 
@@ -9,14 +9,21 @@ class Bookmark < Sinatra::Base
 
   DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 
-  require './lib/link'
+  require_relative './lib/link'
 
   DataMapper.finalize
   DataMapper.auto_upgrade!
 
   get '/' do
-    'Hello Bookmark!'
+    @links = Link.all
+    @links.each do |link|
+      puts "%%%%%%%"
+    puts link.inspect
+    end
+    erb :index
   end
+
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0
