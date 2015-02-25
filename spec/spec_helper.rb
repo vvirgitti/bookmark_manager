@@ -1,7 +1,7 @@
 ENV['RACK_ENV'] = 'test'
 
 
-require_relative '../server'
+require './app/server'
 require 'database_cleaner'
 require 'capybara/rspec'
 
