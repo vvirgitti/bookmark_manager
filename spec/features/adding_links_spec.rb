@@ -16,7 +16,7 @@ feature "User adds a new link" do
     within('#new-link') do
       fill_in 'url', :with => url
       fill_in 'title', :with => title
-      click_button 'Add link'
+      click_button 'Add Link'
     end
   end
 
