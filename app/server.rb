@@ -14,11 +14,20 @@ class BookmarkManager < Sinatra::Base
   DataMapper.finalize
   DataMapper.auto_upgrade!
 
+
   get '/' do
     @links = Link.all
     @links.each do |link|
     end
     erb :index
+  end
+
+
+  post '/links' do
+    url = params["url"]
+    title = params["title"]
+    Link.create(:url => url, :title => title)
+    redirect to('/')
   end
 
 
