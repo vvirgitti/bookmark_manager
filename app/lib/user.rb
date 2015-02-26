@@ -28,4 +28,15 @@ class User
     end
   end
 
+
+
+  # def self.recovery(password)
+  #   user = first(:email => email)
+  #   user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
+  #   user.password_token_timestamp = Time.now
+  #   user.save
+  # end
+
+
+
 end

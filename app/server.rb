@@ -63,12 +63,6 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
-  helpers do
-    def current_user
-      @current_user ||=User.get(session[:user_id]) if session[:user_id]
-    end
-  end
-
   get '/sessions/new' do
     erb :"sessions/new"
   end
@@ -91,6 +85,30 @@ class BookmarkManager < Sinatra::Base
     session[:user_id] = nil
     redirect to('/')
   end
+
+
+  get '/passwords/new' do
+    erb :"passwords/new"
+  end
+
+
+  post '/passwords' do
+    @user = User.new
+    flash[:notice] = "An email was just sent to you"
+    erb :"users/new"
+  end
+
+  helpers do
+      def current_user
+        @current_user ||=User.get(session[:user_id]) if session[:user_id]
+      end
+
+      # def check_user
+      #   # User.get(1).email
+      #   user = first(:email => email)
+      #   user.include?(:email)
+      # end
+
 
 
 
