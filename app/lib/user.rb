@@ -9,7 +9,8 @@ class User
   include DataMapper::Resource
 
   property :id, Serial
-  property :email, String
+  property :email, String, :unique => true, :message => "This email is already taken"
+  # validates_uniqueness_of :email
 
   property :password_digest, Text
   validates_confirmation_of :password
