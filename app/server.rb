@@ -8,6 +8,7 @@ class BookmarkManager < Sinatra::Base
 
   enable :sessions
   use Rack::Flash
+  use Rack::MethodOverride
 
   set :session_secret, 'super secret'
   set :views, Proc.new {File.join(root, "..", "views")}
@@ -72,6 +73,7 @@ class BookmarkManager < Sinatra::Base
     erb :"sessions/new"
   end
 
+
   post '/sessions' do
     email, password = params[:email], params[:password]
     user = User.authenticate(email, password)
@@ -83,6 +85,14 @@ class BookmarkManager < Sinatra::Base
       erb :"sessions/new"
     end
   end
+
+  delete '/sessions' do
+    flash[:notice] = "Goodbye!"
+    session[:user_id] = nil
+    redirect to('/')
+  end
+
+
 
 
 
